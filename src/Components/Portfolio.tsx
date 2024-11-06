@@ -1,6 +1,5 @@
 /* eslint-disable jsx-a11y/alt-text */
 import React, { CSSProperties } from "react";
-import Slider from "react-slick";
 
 // Custom arrow style
 const arrowStyle: CSSProperties = {
@@ -61,22 +60,25 @@ export default function Portfolio() {
     <section>
       <h1 className="flex w-full justify-center font-white">Portfolio</h1>
 
-      {videos.map((video, index) => (
-        <div key={index} className="p-4">
-          <PrevArrow />
-          <video
-            controls
-            width="50%"
-            height="50%"
-            poster={`https://raw.githubusercontent.com/MessiDaGod/nfl-player-images/main/Portfolio${index}.png`}
-          >
-            <source
-              src={`https://raw.githubusercontent.com/MessiDaGod/nfl-player-images/main/${video}`}
-            />
-          </video>
-          <NextArrow />
-        </div>
-      ))}
+      {videos.map((video, index) => {
+        const id = index + 1;
+        return (
+          <div key={id} className="p-4">
+            <PrevArrow />
+            <video
+              controls
+              width="50%"
+              height="50%"
+              poster={`https://raw.githubusercontent.com/MessiDaGod/nfl-player-images/main/Portfolio${id}.png`}
+            >
+              <source
+                src={`https://raw.githubusercontent.com/MessiDaGod/nfl-player-images/main/${video}`}
+              />
+            </video>
+            <NextArrow />
+          </div>
+        );
+      })}
     </section>
   );
 }
