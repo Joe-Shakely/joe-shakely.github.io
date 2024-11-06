@@ -1,11 +1,6 @@
-import React, { Component } from 'react'
+export default function DunkContest() {
 
-class DunkContest extends Component {
-    render() {
-        return (
-            <video controls width="100%" poster="./images/portfolio/dunkpic.jpg"><source src="./images/portfolio/Dunk Contest.mp4"/></video>
-        )
-    }
+    return (
+        <video controls width="100%" poster="./images/portfolio/dunkpic.jpg"><source src={`https://raw.githubusercontent.com/MessiDaGod/nfl-player-images/main/Slam Dunk Contest 2008.mp4`} /></video>
+    )
 }
-
-export default DunkContest;

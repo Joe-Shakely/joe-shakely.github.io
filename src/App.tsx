@@ -10,7 +10,7 @@ import jsonData from './data.json';
 function App() {
   return (
     <div className="App">
-      <Header data={jsonData.main} />
+      <Header />
       <About data={jsonData.main} />
       <Resume data={jsonData.resume} />
       <Portfolio data={jsonData.portfolio} />
