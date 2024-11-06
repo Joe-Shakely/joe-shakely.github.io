@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import "./index.css"
 import Header from './Components/Header';
 import Footer from './Components/Footer';
 import About from './Components/About';
@@ -13,7 +14,7 @@ function App() {
       <Header />
       <About data={jsonData.main} />
       <Resume data={jsonData.resume} />
-      <Portfolio data={jsonData.portfolio} />
+      <Portfolio />
       {/* <Contact data={jsonData.main} /> */}
       <Footer data={jsonData.main} />
     </div>
