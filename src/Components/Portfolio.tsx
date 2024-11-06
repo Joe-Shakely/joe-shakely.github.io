@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/alt-text */
 import React, { CSSProperties } from "react";
 
 // Custom arrow style
@@ -22,63 +21,58 @@ const arrowStyle: CSSProperties = {
   justifyContent: "center",
 };
 
-const NextArrow = (props: any) => {
-  const { onClick } = props;
-  return (
-    <div
-      style={{ ...arrowStyle, right: "10px" }}
-      onClick={onClick}
-      className="cursor-pointer"
-    >
-      &#10095;
-    </div>
-  );
-};
+const NextArrow = ({ onClick }: { onClick: () => void }) => (
+  <div style={{ ...arrowStyle, right: "10px" }} onClick={onClick}>
+    &#10095;
+  </div>
+);
 
-const PrevArrow = (props: any) => {
-  const { onClick } = props;
-  return (
-    <div
-      style={{ ...arrowStyle, left: "10px" }}
-      onClick={onClick}
-      className="cursor-pointer"
-    >
-      &#10094;
-    </div>
-  );
-};
+const PrevArrow = ({ onClick }: { onClick: () => void }) => (
+  <div style={{ ...arrowStyle, left: "10px" }} onClick={onClick}>
+    &#10094;
+  </div>
+);
 
-// Add your video components here
-const videos: string[] = [
-  "Custom Yardi Payable Interface PDF to Yardi ETL and Upload via SFTP #yardi.mp4",
-  "Yardi Commercial Lease Abstract Excel to ETL.mp4",
-  "Import Invoice Yardi API 1.mp4",
+// Video array with id and src
+const videos = [
+  { id: 1 },
+  { id: 2 },
+  { id: 3 },
 ];
 
 export default function Portfolio() {
+  const [activeSlide, setActiveSlide] = React.useState(0); // Initialize with 0 for the first video
+
+  // Handle next and previous slide
+  const handleNext = () => {
+    setActiveSlide((prev) => (prev + 1) % videos.length);
+  };
+
+  const handlePrev = () => {
+    setActiveSlide((prev) => (prev - 1 + videos.length) % videos.length);
+  };
+
   return (
-    <section className="flex flex-col w-full justify-center items-center">
+    <section
+      id="portfolio"
+      className="flex flex-col w-full justify-center items-center"
+    >
       <h1 className="flex w-full justify-center font-white">Portfolio</h1>
 
-      {videos.map((video, index) => {
-        const id = index + 1;
-        return (
-          <div key={id} className="flex w-full justify-center items-center">
-            <PrevArrow />
-            <video
-              controls
-              width="50%"
-              height="50%"
-              poster={`https://raw.githubusercontent.com/MessiDaGod/nfl-player-images/main/Portfolio${id === 3 ? 2 : id}.png`}
-            >
-              <source
-                src={`https://raw.githubusercontent.com/MessiDaGod/nfl-player-images/main/${video}`}
-              />
-            </video>
-            <NextArrow />
-          </div>
-        );
-      })}
+      <div className="flex w-full justify-center items-center relative">
+        <PrevArrow onClick={handlePrev} />
+        <video
+          controls
+          width="50%"
+          height="50%"
+          poster={`https://raw.githubusercontent.com/MessiDaGod/nfl-player-images/main/Portfolio${videos[activeSlide].id}.png`}
+        >
+          <source
+            src={`https://raw.githubusercontent.com/MessiDaGod/nfl-player-images/main/Portfolio${videos[activeSlide].id}.mp4`}
+          />
+        </video>
+        <NextArrow onClick={handleNext} />
+      </div>
     </section>
   );
 }
