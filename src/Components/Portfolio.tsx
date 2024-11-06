@@ -57,19 +57,19 @@ const videos: string[] = [
 
 export default function Portfolio() {
   return (
-    <section>
+    <section className="flex flex-col w-full justify-center items-center">
       <h1 className="flex w-full justify-center font-white">Portfolio</h1>
 
       {videos.map((video, index) => {
         const id = index + 1;
         return (
-          <div key={id} className="p-4">
+          <div key={id} className="flex w-full justify-center items-center">
             <PrevArrow />
             <video
               controls
               width="50%"
               height="50%"
-              poster={`https://raw.githubusercontent.com/MessiDaGod/nfl-player-images/main/Portfolio${id}.png`}
+              poster={`https://raw.githubusercontent.com/MessiDaGod/nfl-player-images/main/Portfolio${id === 3 ? 2 : id}.png`}
             >
               <source
                 src={`https://raw.githubusercontent.com/MessiDaGod/nfl-player-images/main/${video}`}
