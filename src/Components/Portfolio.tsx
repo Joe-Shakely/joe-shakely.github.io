@@ -33,23 +33,29 @@ const PrevArrow = ({ onClick }: { onClick: () => void }) => (
   </div>
 );
 
-// Video array with id and src
-const videos = [
-  { id: 1 },
-  { id: 2 },
-  { id: 3 },
-];
+// Video array with id
+const videos = [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
 
 export default function Portfolio() {
-  const [activeSlide, setActiveSlide] = React.useState(0); // Initialize with 0 for the first video
+  const [activeSlide, setActiveSlide] = React.useState(0);
 
   // Handle next and previous slide
   const handleNext = () => {
-    setActiveSlide((prev) => (prev + 1) % videos.length);
+    console.info("Next clicked");
+    setActiveSlide((prev) => {
+      const nextSlide = (prev + 1) % videos.length;
+      console.info("New active slide (next):", nextSlide);
+      return nextSlide;
+    });
   };
 
   const handlePrev = () => {
-    setActiveSlide((prev) => (prev - 1 + videos.length) % videos.length);
+    console.info("Prev clicked");
+    setActiveSlide((prev) => {
+      const prevSlide = (prev - 1 + videos.length) % videos.length;
+      console.info("New active slide (prev):", prevSlide);
+      return prevSlide;
+    });
   };
 
   return (
